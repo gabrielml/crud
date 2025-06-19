@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <title>CRUD</title>
+  </head>
+  <body>
+    <h1>Libros</h1>
+
+    <form id="formulario">
+      <h3 id="tituloFormulario">Agregar libros</h3>
+      <input type="text" placeholder="Nombre" id="nombre" required />
+      <input type="text" placeholder="Autor" id="autor" />
+      <button type="submit">Guardar</button>
+      <button type="button" id="btnCancelar">Cancelar</button>
+    </form>
+
+    <ul id="listaLibros"></ul>
+
+    <script src="src/services.js"></script>
+  </body>
+</html>
