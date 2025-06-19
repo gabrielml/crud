@@ -100,6 +100,7 @@ formulario.addEventListener("submit", async (e) => {
 /**
  * 7. Función que carga el libro en el formulario
  * para poder editarlo.
+ * 
  * @param {string} id - Es el identificador del libro que
  * queremos editar.
  */
@@ -120,6 +121,34 @@ async function cargarLibroEnFormulario(id) {
     console.error(error);
   }
 }
+
+/**
+ * 8. Función asíncrona para borrar un libro (DELETE).
+ * Es async porque va a usar await para comunicarse con el servidor.
+ * Hace una petición HTTP DELETE al servidor para eliminar el libro con ese ID.
+ * 
+ * @param {string} id - Es el identificador del libro que
+ * queremos borrar.
+ */
+async function borrarLibro(id) {
+    //Pide confirmación antes de eliminar. Muestra un alert y si el usuario da aceptar se vuelve true
+    const confirmacion = confirm("¿Estás segura de que quieres eliminar este libro?");
+
+    if (!confirmacion) return; //return sin nada significa: “salir de la función”.
+
+    try {
+        await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        alert("Libro eliminado");
+
+        //Llama a la función cargarLibros() para recargar la lista actualizada de libros
+        cargarLibros();
+
+    } catch (error) {
+        alert("❌ No se pudo eliminar");
+        console.error(error);
+  }
+}
+
 
 
 // Iniciar app
