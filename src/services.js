@@ -164,9 +164,7 @@ function resetearFormulario() {
 // 10. Botón cancelar
 btnCancelar.addEventListener("click", resetearFormulario);
 
-
-
-// Iniciar app
+//11. Inicia la aplicación
 cargarLibros();
 
 
