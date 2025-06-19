@@ -6,3 +6,7 @@ const lista = document.getElementById("listaLibros");
 const formulario = document.getElementById("formulario");
 const btnCancelar = document.getElementById("btnCancelar");
 const tituloFormulario = document.getElementById("tituloFormulario");
+
+// 3. Inputs del formulario
+const nombre = document.getElementById("nombre");
+const autor = document.getElementById("autor");
