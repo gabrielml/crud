@@ -1,8 +1,14 @@
 {
-  "coleccion": [
-    { "id": 1, "nombre": "Ana" },
-    { "id": 2, "nombre": "Alex" },
-    { "id": 2, "nombre": "Celia" },
-    { "id": 3, "nombre": "Gabrielin" }
+  "libros": [
+    {
+      "id": "1",
+      "nombre": "Cien años de soledad",
+      "autor": "Gabriel García Márquez"
+    },
+    {
+      "id": "2",
+      "nombre": "Raros como yo",
+      "autor": "Juan Manuel de Prada"
+    }
   ]
 }
