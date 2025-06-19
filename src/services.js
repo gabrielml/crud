@@ -21,20 +21,38 @@ let idEditando = null;
  * Es una función asíncrona porque la tarea de consultar una base de datos puede tardar.
  */
 async function cargarLibros() {
-    lista.innerHTML = "";
+  lista.innerHTML = "";
 
+  try { // Estructura "try-catch" que sirve para manejar errores.
     const res = await fetch(API_URL);
     const libros = await res.json();
 
     libros.forEach((libro) => {
-        const li = document.createElement("li");
-        
-        li.innerHTML = `
-            <strong>${libro.nombre}</strong> | ${libro.autor}
-        `;
-        
-        lista.appendChild(li);
+      const li = document.createElement("li");
+      li.innerHTML = `
+        <strong>${libro.nombre}</strong> | ${libro.autor} 
+      `;
+
+      // 5.1.Crea un botón para EDITAR y le pone un evento que carga ese libro en el formulario.
+      const btnEditar = document.createElement("button");
+      btnEditar.textContent = "✏️";
+      btnEditar.addEventListener("click", () =>
+        cargarLibroEnFormulario(libro.id)
+      );
+
+      // 5.2. Crea un botón para BORRAR el libro, con un evento para eliminarlo.
+      const btnBorrar = document.createElement("button");
+      btnBorrar.textContent = "🗑️";
+      btnBorrar.addEventListener("click", () => borrarLibro(libro.id));
+
+      li.appendChild(btnEditar);
+      li.appendChild(btnBorrar);
+      lista.appendChild(li);
     });
+  } catch (error) {
+    alert("Error al cargar los libros 😢");
+    console.error(error);
+  }
 }
 
 // Iniciar app
