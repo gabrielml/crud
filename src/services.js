@@ -88,7 +88,7 @@ formulario.addEventListener("submit", async (e) => {
       alert("Libro agregado con éxito");
     }
 
-    //Aquí ira la llamada a la función ¨resetearFormulario();¨
+    resetearFormulario();
     cargarLibros();
     
   } catch (error) {
@@ -147,6 +147,18 @@ async function borrarLibro(id) {
         alert("❌ No se pudo eliminar");
         console.error(error);
   }
+}
+
+/**
+ * 9. Función Resetear formulario.
+ * Limpia todos los campos del formulario (nombre y autor) 
+ * y lo deja en modo "agregar nuevo".
+ */
+function resetearFormulario() {
+  formulario.reset();
+  modoEdicion = false;
+  idEditando = null;
+  tituloFormulario.textContent = "Agregar libro"; //TODO: Esto no parece funcionar correctamente!!!
 }
 
 
