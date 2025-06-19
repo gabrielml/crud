@@ -97,9 +97,34 @@ formulario.addEventListener("submit", async (e) => {
   }
 });
 
+/**
+ * 7. Función que carga el libro en el formulario
+ * para poder editarlo.
+ * @param {string} id - Es el identificador del libro que
+ * queremos editar.
+ */
+async function cargarLibroEnFormulario(id) {
+  try {
+    const res = await fetch(`${API_URL}/${id}`);
+    const libro = await res.json();
+
+    nombre.value = libro.nombre;
+    autor.value = libro.autor;
+
+    // "modoEdicion" la llamamos arriba cuando guardemos los cambios, para saber qué libro enviar al servidor con el método PUT.
+    modoEdicion = true;
+    idEditando = id;
+    tituloFormulario.textContent = "Editar libro";
+  } catch (error) {
+    alert("⚠️ Error al cargar el libro");
+    console.error(error);
+  }
+}
+
 
 // Iniciar app
 cargarLibros();
+
 
 
 
