@@ -10,3 +10,7 @@ const tituloFormulario = document.getElementById("tituloFormulario");
 // 3. Inputs del formulario
 const nombre = document.getElementById("nombre");
 const autor = document.getElementById("autor");
+
+// 4. Estado de edición
+let modoEdicion = false;
+let idEditando = null;
