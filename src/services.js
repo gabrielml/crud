@@ -161,6 +161,9 @@ function resetearFormulario() {
   tituloFormulario.textContent = "Agregar libro"; //TODO: Esto no parece funcionar correctamente!!!
 }
 
+// 10. Botón cancelar
+btnCancelar.addEventListener("click", resetearFormulario);
+
 
 
 // Iniciar app
