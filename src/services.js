@@ -55,7 +55,51 @@ async function cargarLibros() {
   }
 }
 
+// 6. Enviar formulario (crear o actualizar libro) POST o PUT
+formulario.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const datosLibro = {
+    nombre: nombre.value,
+    autor: autor.value,
+  };
+
+  try {
+    if (modoEdicion) {
+      //Llama a la API para actualizar un libro existente
+      await fetch(`${API_URL}/${idEditando}`, {
+        //PUT significa: “actualiza por completo este recurso”
+        method: "PUT",
+        //Le dice al servidor que vamos a enviar los datos en formato JSON
+        headers: { "Content-Type": "application/json" },
+        //Convierte el objeto datosLibro en texto JSON antes de enviarlo
+        body: JSON.stringify(datosLibro),
+      });
+
+      alert("Libro actualizado con éxito");
+
+    } else {
+      await fetch(API_URL, {
+        //POST nos crea un nuevo registro
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(datosLibro),
+      });
+      alert("Libro agregado con éxito");
+    }
+
+    //Aquí ira la llamada a la función ¨resetearFormulario();¨
+    cargarLibros();
+    
+  } catch (error) {
+    alert("❌ Error al guardar los datos");
+    console.error(error);
+  }
+});
+
+
 // Iniciar app
 cargarLibros();
+
 
 
