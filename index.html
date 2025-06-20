@@ -1,22 +1,32 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <title>CRUD</title>
-  </head>
-  <body>
-    <h1>Libros</h1>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Biblioteca Digital</title>
+    <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+    <header>
+        <h1>Biblioteca Digital</h1>
+    </header>
 
-    <form id="formulario">
-      <h3 id="tituloFormulario">Agregar libros</h3>
-      <input type="text" placeholder="Nombre" id="nombre" required />
-      <input type="text" placeholder="Autor" id="autor" />
-      <button type="submit">Guardar</button>
-      <button type="button" id="btnCancelar">Cancelar</button>
-    </form>
+    <div class="container">
+        <form id="formulario">
+            <h3 id="tituloFormulario">Agregar libros</h3>
+            <input type="text" placeholder="Nombre" id="nombre" required />
+            <input type="text" placeholder="Autor" id="autor" />
+            <button type="submit">Guardar</button>
+            <button type="button" id="btnCancelar">Cancelar</button>
+        </form>
 
-    <ul id="listaLibros"></ul>
+        <ul id="listaLibros"></ul>
+    </div>
+
+    <footer>
+        <p>Visita nuestro <a href="https://github.com/gabrielml/crud" target="_blank">GitHub</a></p>
+    </footer>
 
     <script src="src/services.js"></script>
-  </body>
+</body>
 </html>
