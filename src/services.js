@@ -89,7 +89,7 @@ formulario.addEventListener("submit", async (e) => {
     }
 
     resetearFormulario();
-    cargarLibros();
+    //cargarLibros();
     
   } catch (error) {
     alert("❌ Error al guardar los datos");
@@ -141,7 +141,7 @@ async function borrarLibro(id) {
         alert("Libro eliminado");
 
         //Llama a la función cargarLibros() para recargar la lista actualizada de libros
-        cargarLibros();
+        //cargarLibros();
 
     } catch (error) {
         alert("❌ No se pudo eliminar");
