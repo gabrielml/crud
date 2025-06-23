@@ -10,6 +10,18 @@
       "sinopsis": "Narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo ficticio de Macondo, desde su fundación hasta su desaparición, explorando temas como el amor, la soledad, la guerra, el incesto, y el paso del tiempo",
       "primera-edición": "05/1967",
       "ISBN": "843760494X"
+    },
+
+    {
+      "id": "2",
+      "título": "El gran Gatsby",
+      "autor": "F. Scott Fitzgerald",
+      "categoría": "Ficción",
+      "img-portada": "img/ejemplo-img-portada.webp",
+      "img-autor": "img/ejemplo-img-autor.webp",
+      "sinopsis": "La historia, ambientada en la década de 1920 en Nueva York y Long Island, narra la vida de Jay Gatsby, un millonario misterioso que organiza fiestas extravagantes con la esperanza de reconquistar a su antiguo amor",
+      "primera-edición": "04/1925",
+      "ISBN": "978-84-9062-864-5"
     }
   ]
 }
