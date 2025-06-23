@@ -2,13 +2,14 @@
   "libros": [
     {
       "id": "1",
-      "nombre": "Cien años de soledad",
-      "autor": "Gabriel García Márquez"
-    },
-    {
-      "id": "2",
-      "nombre": "Raros como yo",
-      "autor": "Juan Manuel de Prada"
+      "título": "Cien años de soledad",
+      "autor": "Gabriel García Márquez",
+      "categoría": "Ficción",
+      "img-portada": "img/ejemplo-img-portada.webp",
+      "img-autor": "img/ejemplo-img-autor.webp",
+      "sinopsis": "Narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo ficticio de Macondo, desde su fundación hasta su desaparición, explorando temas como el amor, la soledad, la guerra, el incesto, y el paso del tiempo",
+      "primera-edición": "05/1967",
+      "ISBN": "843760494X"
     }
   ]
 }
