@@ -1,3 +1,4 @@
+/* Estilos generales */
 * {
   margin: 0;
   padding: 0;
@@ -17,15 +18,12 @@ body {
 /* Header */
 .header {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   background-color: #9cb4a8;
   color: white;
   padding: 10px 20px;
-  max-width: 2000px;
-  width: 100%;
-  margin: 0 auto;
-  box-sizing: border-box;
+  width: 100%; /* Ocupa todo el ancho de la página */
   position: relative;
   min-height: 100px;
 }
@@ -34,8 +32,6 @@ body {
   display: flex;
   align-items: center;
   gap: 30px;
-  position: absolute;
-  left: 20px;
 }
 
 .logo img {
@@ -64,18 +60,38 @@ body {
 }
 
 .login {
-  position: absolute;
-  right: 20px;
+  display: flex;
+  align-items: center;
 }
 
 .login img {
   height: 30px;
 }
 
+/* Mobile Menu */
+.mobile-menu {
+  display: none;
+}
+
+#hamburger-menu {
+  background-color: #e3dddd;
+  color: #1e4632;
+  border: none;
+  padding: 8px 12px;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+#nav-menu {
+  display: flex;
+  justify-content: center;
+  flex-grow: 1;
+}
+
 /* Contenedor principal */
 main.container {
   flex: 1;
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
   box-sizing: border-box;
@@ -185,11 +201,13 @@ main.container {
   height: 350px;
   justify-content: center;
   overflow: hidden;
+  width: 100%; /* Asegura que todas las tarjetas tengan la misma medida */
+  max-width: 250px; /* Ancho máximo de cada tarjeta */
 }
 
 .libro img {
-  width: 150px;
-  height: 200px;
+  width: 100px; /* Ajustado para que todas las imágenes tengan la misma medida */
+  height: 150px;
   object-fit: cover;
   border-radius: 4px;
   margin-bottom: 10px;
@@ -236,9 +254,7 @@ main.container {
   gap: 20px;
   flex-wrap: wrap;
   padding: 10px;
-  max-width: 2000px;
-  width: 100%;
-  margin: 0 auto;
+  width: 100%; /* Ocupa todo el ancho de la página */
   box-sizing: border-box;
 }
 
@@ -247,4 +263,88 @@ main.container {
   margin: 0 10px;
   text-decoration: none;
   font-family: sans-serif;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .mobile-menu {
+    display: block;
+  }
+
+  .nav {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: #9cb4a8;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  .nav button {
+    margin: 10px 0;
+    width: 100%;
+    text-align: left;
+  }
+
+  .logo img {
+    height: 30px;
+  }
+
+  .login img {
+    height: 20px;
+  }
+
+  .buscador input {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .buscador button {
+    width: 100%;
+  }
+
+  .crud input,
+  .crud button {
+    width: 100%;
+  }
+
+  .grid-libros {
+    grid-template-columns: 1fr;
+  }
+
+  .libro img {
+    width: 100px;
+    height: 150px;
+  }
+
+  .libro h3 {
+    font-size: 1em;
+  }
+
+  .libro p {
+    font-size: 0.8em;
+  }
+
+  .libro button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .header {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .logo {
+    margin-bottom: 10px;
+  }
+
+  .login {
+    margin-top: 10px;
+  }
 }

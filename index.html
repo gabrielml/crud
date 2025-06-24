@@ -11,14 +11,17 @@
       <img src="./img/libro.png" alt="Logo" />
       <h1>Biblioteca Digital</h1>
     </div>
-    <nav class="nav">
+    <div class="mobile-menu">
+      <button id="hamburger-menu" onclick="toggleMenu()">&#9776;</button>
+    </div>
+    <nav class="nav" id="nav-menu">
       <button onclick="mostrarSeccion('busqueda')">INICIO</button>
       <button onclick="mostrarSeccion('crud')">AGREGAR LIBRO</button>
       <button onclick="mostrarSeccion('catalogos')">MIS LIBROS</button>
     </nav>
-    <div class="login">
+    <!-- <div class="login">
       <img src="./img/cuenta.png" alt="Usuario" />
-    </div>
+    </div> -->
   </header>
 
   <main class="container">
@@ -72,5 +75,6 @@
     <a href="#">Saul</a>
   </footer>
   <script src="./src/services.js"></script>
+  <script src="./src/hamburguer.js"></script>
 </body>
 </html>
