@@ -6,6 +6,7 @@ const lista = document.getElementById("listaLibros");
 const formulario = document.getElementById("formulario");
 const btnCancelar = document.getElementById("btnCancelar");
 const tituloFormulario = document.getElementById("tituloFormulario");
+const catalogoLibros = document.getElementById("catalogoLibros");
 
 // 3. Inputs del formulario
 const nombre = document.getElementById("nombre");
@@ -22,6 +23,7 @@ let idEditando = null;
  */
 async function cargarLibros() {
   lista.innerHTML = "";
+  catalogoLibros.innerHTML = "";
 
   try { // Estructura "try-catch" que sirve para manejar errores.
     const res = await fetch(API_URL);
@@ -30,9 +32,9 @@ async function cargarLibros() {
     libros.forEach((libro) => {
       const li = document.createElement("li");
       li.innerHTML = `
-        <strong>${libro.nombre}</strong> | ${libro.autor} 
+        <strong>${libro.titulo}</strong> | ${libro.autor} 
       `;
-
+      
       // 5.1.Crea un botón para EDITAR y le pone un evento que carga ese libro en el formulario.
       const btnEditar = document.createElement("button");
       btnEditar.textContent = "✏️";
@@ -48,6 +50,17 @@ async function cargarLibros() {
       li.appendChild(btnEditar);
       li.appendChild(btnBorrar);
       lista.appendChild(li);
+
+      // Agregar libro al catálogo
+      const libroElement = document.createElement("div");
+      libroElement.classList.add("libro");
+      libroElement.innerHTML = `
+        <img src="./img/${libro.imagen}" alt="Portada de ${libro.titulo}">
+        <h3>${libro.titulo}</h3>
+        <p>${libro.autor}</p>
+        <button onclick="verDetalles(${libro.id})">Ver Detalles</button>
+      `;
+      catalogoLibros.appendChild(libroElement);
     });
   } catch (error) {
     alert("Error al cargar los libros 😢");
@@ -66,13 +79,10 @@ formulario.addEventListener("submit", async (e) => {
 
   try {
     if (modoEdicion) {
-      //Llama a la API para actualizar un libro existente
+      // Llama a la API para actualizar un libro existente
       await fetch(`${API_URL}/${idEditando}`, {
-        //PUT significa: “actualiza por completo este recurso”
         method: "PUT",
-        //Le dice al servidor que vamos a enviar los datos en formato JSON
         headers: { "Content-Type": "application/json" },
-        //Convierte el objeto datosLibro en texto JSON antes de enviarlo
         body: JSON.stringify(datosLibro),
       });
 
@@ -80,7 +90,6 @@ formulario.addEventListener("submit", async (e) => {
 
     } else {
       await fetch(API_URL, {
-        //POST nos crea un nuevo registro
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(datosLibro),
@@ -89,8 +98,7 @@ formulario.addEventListener("submit", async (e) => {
     }
 
     resetearFormulario();
-    //cargarLibros();
-    
+    cargarLibros();
   } catch (error) {
     alert("❌ Error al guardar los datos");
     console.error(error);
@@ -112,7 +120,6 @@ async function cargarLibroEnFormulario(id) {
     nombre.value = libro.nombre;
     autor.value = libro.autor;
 
-    // "modoEdicion" la llamamos arriba cuando guardemos los cambios, para saber qué libro enviar al servidor con el método PUT.
     modoEdicion = true;
     idEditando = id;
     tituloFormulario.textContent = "Editar libro";
@@ -131,21 +138,16 @@ async function cargarLibroEnFormulario(id) {
  * queremos borrar.
  */
 async function borrarLibro(id) {
-    //Pide confirmación antes de eliminar. Muestra un alert y si el usuario da aceptar se vuelve true
-    const confirmacion = confirm("¿Estás segura de que quieres eliminar este libro?");
+  const confirmacion = confirm("¿Estás segura de que quieres eliminar este libro?");
+  if (!confirmacion) return;
 
-    if (!confirmacion) return; //return sin nada significa: “salir de la función”.
-
-    try {
-        await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-        alert("Libro eliminado");
-
-        //Llama a la función cargarLibros() para recargar la lista actualizada de libros
-        //cargarLibros();
-
-    } catch (error) {
-        alert("❌ No se pudo eliminar");
-        console.error(error);
+  try {
+    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+    alert("Libro eliminado");
+    cargarLibros();
+  } catch (error) {
+    alert("❌ No se pudo eliminar");
+    console.error(error);
   }
 }
 
@@ -158,15 +160,17 @@ function resetearFormulario() {
   formulario.reset();
   modoEdicion = false;
   idEditando = null;
-  tituloFormulario.textContent = "Agregar libro"; //TODO: Esto no parece funcionar correctamente!!!
+  tituloFormulario.textContent = "Agregar libro";
 }
 
 // 10. Botón cancelar
 btnCancelar.addEventListener("click", resetearFormulario);
 
-//11. Inicia la aplicación
+// 11. Función para mostrar detalles de un libro
+function verDetalles(id) {
+  // Aquí puedes implementar la lógica para mostrar los detalles del libro
+  console.log(`Mostrar detalles del libro con ID: ${id}`);
+}
+
+// 12. Inicia la aplicación
 cargarLibros();
-
-
-
-

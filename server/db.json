@@ -2,7 +2,7 @@
   "libros": [
     {
       "id": "1",
-      "título": "Cien años de soledad",
+      "titulo": "Cien años de soledad",
       "autor": "Gabriel García Márquez",
       "categoría": "Ficción",
       "img-portada": "img/ejemplo-img-portada.webp",
@@ -14,7 +14,7 @@
 
     {
       "id": "2",
-      "título": "El gran Gatsby",
+      "titulo": "El gran Gatsby",
       "autor": "F. Scott Fitzgerald",
       "categoría": "Ficción",
       "img-portada": "img/ejemplo-img-portada.webp",

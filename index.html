@@ -1,18 +1,14 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
   <meta charset="UTF-8" />
   <title>Biblioteca Digital</title>
-  <link rel="stylesheet" href="styles.css" />
-  <link href="styles.css" rel="stylesheet">
+  <link rel="stylesheet" href="./css/styles.css" />
 </head>
-
 <body>
-
   <header class="header">
     <div class="logo">
-      <img src="libro.png" alt="Logo" />
+      <img src="./img/libro.png" alt="Logo" />
       <h1>Biblioteca Digital</h1>
     </div>
     <nav class="nav">
@@ -21,12 +17,11 @@
       <button onclick="mostrarSeccion('catalogos')">MIS LIBROS</button>
     </nav>
     <div class="login">
-      <img src="cuenta.png" alt="Usuario" />
+      <img src="./img/cuenta.png" alt="Usuario" />
     </div>
   </header>
 
   <main class="container">
-
     <section id="busqueda" class="buscador">
       <input type="text" placeholder="Buscar ..." />
       <button>🔍</button>
@@ -46,66 +41,21 @@
     <section id="catalogos" class="catalogo">
       <h2>Catálogo de Libros</h2>
       <div class="grid-libros" id="catalogoLibros">
-
-        <div class="libro">
-          <img src="gatsy.jpg" alt="Portada de El Gran Gatsby">
-          <h3>El Gran Gatsby</h3>
-          <p>F. Scott Fitzgerald</p>
-          <button>Ver Detalles</button>
-        </div>
-
-        <div class="libro">
-          <img src="grabiel garcia.jpg" alt="Portada de Cien Años de Soledad">
-          <h3>Cien Años de Soledad</h3>
-          <p>Gabriel García Márquez</p>
-          <button>Ver Detalles</button>
-        </div>
-
-        <div class="libro">
-          <img src="1984.jpg" alt="Portada de 1984">
-          <h3>1984</h3>
-          <p>George Orwell</p>
-          <button>Ver Detalles</button>
-        </div>
-
-        <div class="libro">
-          <img src="dom.jpg" alt="Portada de Don Quijote de la Mancha">
-          <h3>Don Quijote de la Mancha</h3>
-          <p>Miguel de Cervantes</p>
-          <button>Ver Detalles</button>
-        </div>
-
-        <div class="libro">
-          <img src="orgullo.jpg" alt="Portada de Orgullo y Prejuicio">
-          <h3>Orgullo y Prejuicio</h3>
-          <p>Jane Austen</p>
-          <button>Ver Detalles</button>
-        </div>
-
-        <div class="libro">
-          <img src="anillos.jpg" alt="El Señor de los Anillos">
-          <h3>El Señor de los Anillos</h3>
-          <p>J.R.R. Tolkien</p>
-          <button>Ver Detalles</button>
-        </div>
+        <!-- Aquí se mostrarán los libros del catálogo -->
       </div>
     </section>
 
-    <!-- SECCIÓN DETALLES -->
     <section id="detalles" class="detalles" style="display: none;">
       <h2>Detalles del Libro</h2>
-
       <div id="libroDetalle">
         <p><strong>Título:</strong> <span id="detalleTitulo">Título del libro</span></p>
         <p><strong>Autor:</strong> <span id="detalleAutor">Autor del libro</span></p>
         <p><strong>Año:</strong> <span id="detalleAnio">Año de publicación</span></p>
       </div>
-
       <button>Leer</button>
       <button>Actualizar</button>
       <button>Eliminar</button>
       <div id="formularioActualizar" style="display: none;">
-        
         <h3>Actualizar Libro</h3>
         <input type="text" id="nuevoTitulo" placeholder="Nuevo Título">
         <input type="text" id="nuevoAutor" placeholder="Nuevo Autor">
@@ -115,13 +65,12 @@
     </section>
   </main>
   <footer class="footer">
-    <a href="#">FactoreF5</a>
+    <a href="#">FactoriaF5</a>
     <a href="#">Gabriel</a>
     <a href="#">Fernanda</a>
     <a href="#">Vanderlene</a>
     <a href="#">Saul</a>
   </footer>
-  <script src="services.js"></script>
+  <script src="./src/services.js"></script>
 </body>
-
 </html>
