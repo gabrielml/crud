@@ -11,7 +11,6 @@
       "primera-edición": "05/1967",
       "ISBN": "843760494X"
     },
-
     {
       "id": "2",
       "título": "El gran Gatsby",
@@ -22,6 +21,28 @@
       "sinopsis": "La historia, ambientada en la década de 1920 en Nueva York y Long Island, narra la vida de Jay Gatsby, un millonario misterioso que organiza fiestas extravagantes con la esperanza de reconquistar a su antiguo amor",
       "primera-edición": "04/1925",
       "ISBN": "978-84-9062-864-5"
+    },
+    {
+      "id": "3",
+      "título": "Don Quijote de la Mancha",
+      "autor": "Miguel de Cervantes Saavedra",
+      "categoría": "Novela de caballerías / Sátira",
+      "img-portada": "http://googleusercontent.com/image_collection/image_retrieval/4054438012263048475",
+      "img-autor": "img/miguel-de-cervantes-saavedra-autor.webp",
+      "sinopsis": "Alonso Quijano, un hidalgo cincuentón, enloquece leyendo libros de caballerías y decide convertirse en el caballero अंधांत Don Quijote de la Mancha. Acompañado de su fiel escudero Sancho Panza, se embarca en un sinfín de aventuras, interpretando la realidad a través de su delirio caballeresco y enfrentándose a molinos que cree gigantes, rebaños que confunde con ejércitos y posadas que ve como castillos.",
+      "primera-edición": "01/1605 (Primera parte)",
+      "ISBN": "978-84-204-6330-9"
+    },
+    {
+      "id": "4",
+      "título": "Orgullo y Prejuicio",
+      "autor": "Jane Austen",
+      "categoría": "Romance",
+      "img-portada": "img/orgullo-y-prejuicio-portada.webp",
+      "img-autor": "img/jane-austen-autor.webp",
+      "sinopsis": "La novela narra la historia de Elizabeth Bennet, una joven de la campiña inglesa, y su relación con el aristocrático Fitzwilliam Darcy. La trama explora temas como el amor, la clase social, el orgullo y los prejuicios de la sociedad de la época.",
+      "primera-edición": "28/01/1813",
+      "ISBN": "978-84-9105-257-8"
     }
   ]
 }
