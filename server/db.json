@@ -43,6 +43,18 @@
       "sinopsis": "La novela narra la historia de Elizabeth Bennet, una joven de la campiña inglesa, y su relación con el aristocrático Fitzwilliam Darcy. La trama explora temas como el amor, la clase social, el orgullo y los prejuicios de la sociedad de la época.",
       "primera-edición": "28/01/1813",
       "ISBN": "978-84-9105-257-8"
-    }
+
+    },
+     {
+      "id": "5",
+      "título": "El Señor de los anillos",
+      "autor": "J.R.R.Tolkien",
+      "categoría": "Fantasía",
+      "img-portada": "img/ejemplo-img-portada.webp",
+      "img-autor": "img/ejemplo-img-autor.webp",
+      "sinopsis": "Su historia se desarrolla en la Tercera Edad del Sol de la Tierra Media, un lugar ficticio poblado por hombres y otras razas antropomorfas, como los hobbits, los elfos o los enanos, así como por muchas otras criaturas reales y fantásticas. La novela narra el viaje del protagonista principal, Frodo Bolsón, hobbit de la Comarca, para destruir el Anillo Único y la consiguiente guerra que provocará el enemigo para recuperarlo, ya que es la principal fuente de poder de su creador, el señor oscuro Sauron.",
+      "primera-edición": "1954/1955",
+      "ISBN": "978-88-4529-261-3"
+     }
   ]
 }
