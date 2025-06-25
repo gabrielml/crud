@@ -24,7 +24,7 @@
     },
     {
       "id": "3",
-      "título": "Don Quijote de la Mancha",
+      "titulo": "Don Quijote de la Mancha",
       "autor": "Miguel de Cervantes Saavedra",
       "categoría": "Novela de caballerías / Sátira",
       "img-portada": "http://googleusercontent.com/image_collection/image_retrieval/4054438012263048475",
@@ -35,7 +35,7 @@
     },
     {
       "id": "4",
-      "título": "Orgullo y Prejuicio",
+      "titulo": "Orgullo y Prejuicio",
       "autor": "Jane Austen",
       "categoría": "Romance",
       "img-portada": "img/orgullo-y-prejuicio-portada.webp",
@@ -47,7 +47,7 @@
     },
      {
       "id": "5",
-      "título": "El Señor de los anillos",
+      "titulo": "El Señor de los anillos",
       "autor": "J.R.R.Tolkien",
       "categoría": "Fantasía",
       "img-portada": "img/ejemplo-img-portada.webp",
