@@ -16,7 +16,7 @@
     </div>
     <nav class="nav" id="nav-menu">
       <button onclick="mostrarSeccion('busqueda')">INICIO</button>
-      <button onclick="mostrarSeccion('crud')">AGREGAR LIBRO</button>
+      <button id="agregaLibro">AGREGAR LIBRO</button>
       <button onclick="mostrarSeccion('catalogos')">MIS LIBROS</button>
     </nav>
     <!-- <div class="login">
@@ -30,15 +30,17 @@
       <button>🔍</button>
     </section>
 
-    <section id="crud" class="crud" style="display: none;">
-      <h2>Agregar libros</h2>
+    <section id="crud" class="crud">
+      <h2 id="tituloFormulario">Agregar libros</h2>
+      
       <form id="formulario">
         <input type="text" id="nombre" placeholder="Nombre del libro" required />
         <input type="text" id="autor" placeholder="Autor" />
         <button type="submit">Guardar</button>
         <button type="button" id="btnCancelar">Cancelar</button>
       </form>
-      <ul id="listaLibros"></ul>
+
+      <ul id="listaLibros"></ul> <!--TODO: Solucionar renderizado de libros-->
     </section>
 
     <section id="catalogos" class="catalogo">

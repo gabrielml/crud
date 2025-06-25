@@ -7,6 +7,7 @@ const formulario = document.getElementById("formulario");
 const btnCancelar = document.getElementById("btnCancelar");
 const tituloFormulario = document.getElementById("tituloFormulario");
 const catalogoLibros = document.getElementById("catalogoLibros");
+const btnAgregaLibro = document.getElementById("agregaLibro");
 
 // 3. Inputs del formulario
 const nombre = document.getElementById("nombre");
@@ -15,6 +16,11 @@ const autor = document.getElementById("autor");
 // 4. Estado de edición
 let modoEdicion = false;
 let idEditando = null;
+
+// Cuando el usuario pulsa el botón, se abre el modal.
+btnAgregaLibro.onclick = function() {
+  crud.style.display = "block";
+}
 
 /**
  * 5. Función para cargar y mostrar los libros (GET)
@@ -158,9 +164,9 @@ async function borrarLibro(id) {
  */
 function resetearFormulario() {
   formulario.reset();
+  crud.style.display = "none"; // Esconde el formulario
   modoEdicion = false;
-  idEditando = null;
-  tituloFormulario.textContent = "Agregar libro";
+  idEditando = null;  
 }
 
 // 10. Botón cancelar
