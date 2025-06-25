@@ -124,6 +124,10 @@ main.container {
 }
 
 /* CRUD */
+.crud {
+  display: none;
+}
+
 .crud form {
   display: flex;
   flex-direction: column;
