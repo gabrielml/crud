@@ -36,6 +36,7 @@ async function cargarLibros() {
     const libros = await res.json();
 
     libros.forEach((libro) => {
+      console.log(libro.portada); // TODO: TO DEL
       const li = document.createElement("li");
       li.innerHTML = `
         <strong>${libro.titulo}</strong> | ${libro.autor} 
@@ -61,7 +62,7 @@ async function cargarLibros() {
       const libroElement = document.createElement("div");
       libroElement.classList.add("libro");
       libroElement.innerHTML = `
-        <img src="./img/${libro.imagen}" alt="Portada de ${libro.titulo}">
+        <img src="${libro.portada}" alt="Portada de ${libro.titulo}">
         <h3>${libro.titulo}</h3>
         <p>${libro.autor}</p>
         <button onclick="verDetalles(${libro.id})">Ver Detalles</button>
@@ -166,7 +167,8 @@ function resetearFormulario() {
   formulario.reset();
   crud.style.display = "none"; // Esconde el formulario
   modoEdicion = false;
-  idEditando = null;  
+  idEditando = null;
+  tituloFormulario.textContent = "Agregar libro";
 }
 
 // 10. Botón cancelar
