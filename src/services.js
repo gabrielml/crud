@@ -65,8 +65,10 @@ async function cargarLibros() {
         <img src="${libro.portada}" alt="Portada de ${libro.titulo}">
         <h3>${libro.titulo}</h3>
         <p>${libro.autor}</p>
-        <button onclick="verDetalles(${libro.id})">Ver Detalles</button>
-      `;
+       
+       <button onclick="verDetalles(${libro.id})">Ver Detalles</button>
+
+       `;
       catalogoLibros.appendChild(libroElement);
     });
   } catch (error) {
@@ -175,10 +177,45 @@ function resetearFormulario() {
 btnCancelar.addEventListener("click", resetearFormulario);
 
 // 11. Función para mostrar detalles de un libro
-function verDetalles(id) {
-  // Aquí puedes implementar la lógica para mostrar los detalles del libro
-  console.log(`Mostrar detalles del libro con ID: ${id}`);
+async function verDetalles(id) {
+  try {
+    const res = await fetch(`${API_URL}/${id}`);
+    const libro = await res.json();
+
+    const modal = document.getElementById("modalDetalles");
+    const img = document.getElementById("modalImgAutor");
+    const titulo = document.getElementById("modalTitulo");
+    const sinopsis = document.getElementById("modalSinopsis");
+    const links = document.getElementById("modalLinks");
+
+    img.src = libro["img-autor"] || "./img/default-author.webp";
+    img.alt = `Foto de ${libro.autor}`;
+    titulo.textContent = libro.titulo;
+    sinopsis.textContent = libro.sinopsis || "Sin sinopsis disponible.";
+
+    //los paréntesis es justamente para reemplazar los espacios por otro carácter —en este caso, por un guion bajo (_)
+    const autorWiki = libro.autor?.replace(/ /g, "_");
+    // link que te dirige al auto Babelio
+     const autorBabelio = encodeURIComponent(libro.autor);
+
+    links.innerHTML = `
+  <a href="https://es.wikipedia.org/wiki/${autorWiki}" target="_blank">Wikipedia</a><br>
+  <a href="https://www.babelio.com/recherche.php?q=${autorBabelio}" target="_blank">Buscar autor/a en Babelio</a>
+`;
+
+
+    modal.style.display = "flex";
+  } catch (error) {
+    alert("⚠️ No se pudo cargar el detalle del libro"); 
+    console.error(error);
+  }
 }
+
+function cerrarModal() {
+  document.getElementById("modalDetalles").style.display = "none";
+}
+
+
 
 // 12. Inicia la aplicación
 cargarLibros();
