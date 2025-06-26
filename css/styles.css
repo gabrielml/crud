@@ -10,9 +10,9 @@ body {
   margin: 0;
   display: flex;
   flex-direction: column;
-  font-family: 'Shadows Into Light', cursive;
-  background-color: #4CAF50;
-  color: #83b98c;
+  font-family: 'Shadows Into Light', cursive; /* Asegúrate de que esta fuente esté importada si es externa */
+  background-color: #4CAF50; /* Verde oscuro */
+  color: #83b98c; /* Verde claro */
 }
 
 /* Header */
@@ -20,10 +20,10 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #9cb4a8;
+  background-color: #9cb4a8; /* Verde grisáceo */
   color: white;
   padding: 10px 20px;
-  width: 100%; /* Ocupa todo el ancho de la página */
+  width: 100%;
   position: relative;
   min-height: 100px;
 }
@@ -47,8 +47,8 @@ body {
 .nav button {
   margin: 0 5px;
   padding: 8px 12px;
-  background-color: #e3dddd;
-  color: #1e4632;
+  background-color: #e3dddd; /* Gris claro */
+  color: #1e4632; /* Verde oscuro */
   border: none;
   cursor: pointer;
   border-radius: 5px;
@@ -56,7 +56,7 @@ body {
 }
 
 .nav button:hover {
-  background-color: #ededec;
+  background-color: #ededec; /* Gris aún más claro */
 }
 
 .login {
@@ -90,7 +90,7 @@ body {
 
 /* Contenedor principal */
 main.container {
-  flex: 1;
+  flex: 1; /* Permite que el contenido principal crezca para ocupar el espacio disponible */
   max-width: 1200px;
   margin: 0 auto;
   padding: 40px 20px;
@@ -125,7 +125,7 @@ main.container {
 
 /* CRUD */
 .crud {
-  display: none;
+  display: none; /* Oculto por defecto */
 }
 
 .crud form {
@@ -202,10 +202,10 @@ main.container {
   flex-direction: column;
   align-items: center;
   text-align: center;
-  height: 350px;
-  justify-content: center;
-  overflow: hidden;
-  width: 100%; /* Asegura que todas las tarjetas tengan la misma medida */
+  height: 350px; /* Altura fija para que todas las tarjetas sean iguales */
+  justify-content: space-between; /* Distribuye el espacio verticalmente entre los elementos */
+  overflow: hidden; /* Asegura que nada se desborde */
+  width: 100%;
   max-width: 250px; /* Ancho máximo de cada tarjeta */
 }
 
@@ -228,25 +228,84 @@ main.container {
 .libro p {
   color: #555;
   font-size: 0.9em;
-  margin-bottom: 15px;
+  margin-bottom: 15px; /* Mantenemos este margen para separar del texto de los botones */
   font-family: sans-serif;
 }
 
-.libro button {
-  background-color: #9cb4a8;
-  color: white;
+/* --- INICIO DE CAMBIOS PARA ALINEAR Y SEPARAR BOTONES DE LIBROS USANDO CLASES --- */
+
+/* Contenedor de acciones dentro de cada libro */
+.libro .acciones-libro { /* NUEVA REGLA: Contenedor Flex para los botones */
+    display: flex;
+    justify-content: center; /* Centra los botones horizontalmente */
+    align-items: center; /* Alinea los botones verticalmente */
+    margin-top: 10px; /* Separación de los elementos de texto/párrafo de arriba */
+    width: 100%; /* Asegura que el contenedor ocupe el ancho disponible */
+}
+
+
+.libro button { /* Estilos generales para todos los botones dentro de .libro */
   border: none;
-  padding: 8px 15px;
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  margin-top: 10px;
   font-family: sans-serif;
+  /* Ya no necesitamos display: inline-block o vertical-align aquí
+     porque el padre .acciones-libro es flex */
 }
 
 .libro button:hover {
-  background-color: #819f93;
+  opacity: 0.9;
 }
+
+/* Estilo para el botón "Ver Detalles" (con clase .btn-detalles) */
+.libro .btn-detalles {
+  background-color: #007bff; /* azul */
+  color: white;
+  border-radius: 20px; /* Mantener bordes redondeados como en tu ejemplo */
+  padding: 8px 12px;
+  font-size: 16px;
+  margin-right: 10px; /* Margen para separar del siguiente botón */
+}
+
+.libro .btn-detalles:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo base para los botones de icono (Editar y Borrar) */
+.libro button.btn-editar,
+.libro button.btn-borrar {
+  border: none;
+  border-radius: 6px;
+  padding: 8px; /* Padding para que sean cuadrados */
+  font-size: 18px; /* Tamaño del icono */
+  color: white;
+  /* Ya no necesitamos display: flex, justify-content, align-items, min-width, min-height, line-height aquí
+     porque el padre .acciones-libro ya es flex y los centra, y el contenido ya es el icono */
+}
+
+/* Botón Editar - verde */
+.libro button.btn-editar {
+  background-color: #28a745;
+  margin-right: 8px; /* Margen para separar de "Borrar" */
+}
+
+.libro button.btn-editar:hover {
+  background-color: #218838;
+}
+
+/* Botón Borrar - rojo */
+.libro button.btn-borrar {
+  background-color: #a02f3a;
+  /* Este es el último botón en la fila, no necesita margin-right */
+}
+
+.libro button.btn-borrar:hover {
+  background-color: #8c2631; /* Un tono un poco más oscuro para el hover */
+}
+
+/* --- FIN DE CAMBIOS PARA ALINEAR Y SEPARAR BOTONES DE LIBROS USANDO CLASES --- */
+
 
 /* Footer */
 .footer {
@@ -258,7 +317,7 @@ main.container {
   gap: 20px;
   flex-wrap: wrap;
   padding: 10px;
-  width: 100%; /* Ocupa todo el ancho de la página */
+  width: 100%;
   box-sizing: border-box;
 }
 
@@ -316,12 +375,12 @@ main.container {
   }
 
   .grid-libros {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr; /* Una columna en pantallas pequeñas */
   }
 
   .libro img {
-    width: 100px;
-    height: 150px;
+    width: 80px; /* Ajuste para pantallas más pequeñas */
+    height: 120px;
   }
 
   .libro h3 {
@@ -332,9 +391,18 @@ main.container {
     font-size: 0.8em;
   }
 
-  .libro button {
-    padding: 6px 10px;
-    font-size: 12px;
+  /* Ajuste para los botones en móviles */
+  .libro .acciones-libro { /* NUEVA REGLA: Ajusta el espacio entre botones en móviles */
+    justify-content: center; /* Re-centra por si hay cambios en el ancho */
+  }
+  .libro .btn-detalles {
+    margin-right: 6px; /* Menos margen en móvil */
+  }
+  .libro button.btn-editar {
+    margin-right: 4px; /* Menos margen en móvil */
+  }
+  .libro button.btn-borrar {
+    /* No necesita margin-right */
   }
 }
 
