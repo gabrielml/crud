@@ -32,7 +32,7 @@ formulario.onsubmit = async (e) => {
     e.preventDefault();
 
     const datosLibro = {
-        nombre: nombreInput.value,
+        titulo: nombreInput.value,
         autor: autorInput.value,
         // imagen: imagenInput ? imagenInput.value : undefined, // Si tienes input de imagen
     };
@@ -89,8 +89,8 @@ async function cargarLibros() {
 
             // Contenido HTML de la tarjeta (sin botones interactivos aquí)
             libroDiv.innerHTML = `
-                <img src="${libro.portada ? libro.portada : "default.png"}" alt="Portada de ${libro.nombre}">
-                <h3>${libro.nombre}</h3>
+                <img src="${libro.portada ? libro.portada : "default.png"}" alt="Portada de ${libro.titulo}">
+                <h3>${libro.titulo}</h3>
                 <p>${libro.autor}</p>
             `;
 
@@ -144,7 +144,7 @@ async function cargarLibroEnFormulario(id) {
         }
         const libro = await res.json();
 
-        nombreInput.value = libro.nombre;
+        nombreInput.value = libro.titulo;
         autorInput.value = libro.autor;
         // if (imagenInput) imagenInput.value = libro.imagen || ""; // Carga imagen si existe el input
 
@@ -183,11 +183,46 @@ function resetearFormulario() {
     tituloFormulario.textContent = "Agregar libro";
 }
 
-function verDetalles(id) {
-    alert(`Mostrar detalles del libro con ID ${id}`);
-    // Aquí puedes implementar una lógica más avanzada para mostrar los detalles en un modal o sección aparte.
-}
+// 10. Botón cancelar
+btnCancelar.addEventListener("click", resetearFormulario);
 
+// 11. Función para mostrar detalles de un libro
+async function verDetalles(id) {
+  try {
+    const res = await fetch(`${API_URL}/${id}`);
+    const libro = await res.json();
+
+    const modal = document.getElementById("modalDetalles");
+    const img = document.getElementById("modalImgAutor");
+    const titulo = document.getElementById("modalTitulo");
+    const sinopsis = document.getElementById("modalSinopsis");
+    const links = document.getElementById("modalLinks");
+
+    img.src = libro["img-autor"] || "./img/default-author.webp";
+    img.alt = `Foto de ${libro.autor}`;
+    titulo.textContent = libro.titulo;
+    sinopsis.textContent = libro.sinopsis || "Sin sinopsis disponible.";
+
+    //los paréntesis es justamente para reemplazar los espacios por otro carácter —en este caso, por un guion bajo (_)
+    const autorWiki = libro.autor?.replace(/ /g, "_");
+    // link que te dirige al auto Babelio
+     const autorBabelio = encodeURIComponent(libro.autor);
+
+    links.innerHTML = `
+  <a href="https://es.wikipedia.org/wiki/${autorWiki}" target="_blank">Wikipedia</a><br>
+  <a href="https://www.babelio.com/recherche.php?q=${autorBabelio}" target="_blank">Buscar autor/a en Babelio</a>
+`;
+
+
+    modal.style.display = "flex";
+  } catch (error) {
+    alert("⚠️ No se pudo cargar el detalle del libro"); 
+    console.error(error);
+  }
+}
+function cerrarModal() {
+  document.getElementById("modalDetalles").style.display = "none";
+}
 // ----- INICIO DE LA APLICACIÓN -----
 crud.style.display = "none"; // Asegúrate de que el modal esté oculto al inicio
 cargarLibros(); // Carga los libros cuando la página se abre

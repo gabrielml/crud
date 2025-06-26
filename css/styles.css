@@ -328,6 +328,29 @@ main.container {
   font-family: sans-serif;
 }
 
+  .modal {
+    display: none;
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    justify-content: center;
+    align-items: center;
+    color: green;
+    
+   }
+  /*modal*/
+  .modal-content {
+    background: white;
+    padding: 1.8rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+  }
+  .modal a{
+    text-decoration: none;
+  }
+
 /* Responsividad */
 @media (max-width: 768px) {
   .mobile-menu {
