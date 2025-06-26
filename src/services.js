@@ -184,10 +184,11 @@ async function borrarLibro(id) {
 }
 
 function resetearFormulario() {
-    formulario.reset();
-    modoEdicion = false;
-    idEditando = null;
-    tituloFormulario.textContent = "Agregar libros";
+  formulario.reset();
+  crud.style.display = "none"; // Esconde el formulario
+  modoEdicion = false;
+  idEditando = null;
+  tituloFormulario.textContent = "Agregar libro";
 }
 
 function verDetalles(id) {
