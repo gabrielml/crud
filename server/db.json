@@ -1,9 +1,8 @@
 {
   "libros": [
     {
-      "id":1,
-      "titulo":"Cien años de soledad",
-      "nombre": "undefined",
+      "id": 1,
+      "titulo": "Cien años de soledad",
       "autor": "Gabriel García Márquez",
       "categoría": "Ficción",
       "portada": "./img/cien-anios-soledad.webp",
@@ -55,11 +54,6 @@
       "sinopsis": "Su historia se desarrolla en la Tercera Edad del Sol de la Tierra Media, un lugar ficticio poblado por hombres y otras razas antropomorfas, como los hobbits, los elfos o los enanos, así como por muchas otras criaturas reales y fantásticas. La novela narra el viaje del protagonista principal, Frodo Bolsón, hobbit de la Comarca, para destruir el Anillo Único y la consiguiente guerra que provocará el enemigo para recuperarlo, ya que es la principal fuente de poder de su creador, el señor oscuro Sauron.",
       "primera-edición": "1954/1955",
       "ISBN": "978-88-4529-261-3"
-    },
-    {
-      "id": "0ddf",
-      "nombre": "LIBRO 01",
-      "autor": "vanderlene"
     }
   ]
 }
