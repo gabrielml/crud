@@ -1,182 +1,201 @@
-// 1. Configuración inicial: URL de la API.
 const API_URL = "http://localhost:3000/libros";
 
-// 2. Selección de elementos del HTML (DOM)
-const lista = document.getElementById("listaLibros");
+// ----- SELECCIÓN DE ELEMENTOS HTML -----
 const formulario = document.getElementById("formulario");
 const btnCancelar = document.getElementById("btnCancelar");
 const tituloFormulario = document.getElementById("tituloFormulario");
-const catalogoLibros = document.getElementById("catalogoLibros");
+const catalogoLibros = document.getElementById("catalogoLibros"); // Contenedor de las tarjetas
 const btnAgregaLibro = document.getElementById("agregaLibro");
+const crud = document.getElementById("crud"); // Tu modal o formulario CRUD
 
-// 3. Inputs del formulario
-const nombre = document.getElementById("nombre");
-const autor = document.getElementById("autor");
+// ----- ENTRADAS DEL FORMULARIO -----
+const nombreInput = document.getElementById("nombre");
+const autorInput = document.getElementById("autor");
+// Si tienes un input para la imagen en tu formulario (descomenta si lo usas):
+// const imagenInput = document.getElementById("imagen");
 
-// 4. Estado de edición
 let modoEdicion = false;
 let idEditando = null;
 
-// Cuando el usuario pulsa el botón, se abre el modal.
-btnAgregaLibro.onclick = function() {
-  crud.style.display = "block";
-}
-
-/**
- * 5. Función para cargar y mostrar los libros (GET)
- * Hace una petición GET a la API y convierte la respuesta en JSON (una lista de libros).
- * Es una función asíncrona porque la tarea de consultar una base de datos puede tardar.
- */
-async function cargarLibros() {
-  lista.innerHTML = "";
-  catalogoLibros.innerHTML = "";
-
-  try { // Estructura "try-catch" que sirve para manejar errores.
-    const res = await fetch(API_URL);
-    const libros = await res.json();
-
-    libros.forEach((libro) => {
-      const li = document.createElement("li");
-      li.innerHTML = `
-        <strong>${libro.titulo}</strong> | ${libro.autor} 
-      `;
-      
-      // 5.1.Crea un botón para EDITAR y le pone un evento que carga ese libro en el formulario.
-      const btnEditar = document.createElement("button");
-      btnEditar.textContent = "✏️";
-      btnEditar.addEventListener("click", () =>
-        cargarLibroEnFormulario(libro.id)
-      );
-
-      // 5.2. Crea un botón para BORRAR el libro, con un evento para eliminarlo.
-      const btnBorrar = document.createElement("button");
-      btnBorrar.textContent = "🗑️";
-      btnBorrar.addEventListener("click", () => borrarLibro(libro.id));
-
-      li.appendChild(btnEditar);
-      li.appendChild(btnBorrar);
-      lista.appendChild(li);
-
-      // Agregar libro al catálogo
-      const libroElement = document.createElement("div");
-      libroElement.classList.add("libro");
-      libroElement.innerHTML = `
-        <img src="./img/${libro.imagen}" alt="Portada de ${libro.titulo}">
-        <h3>${libro.titulo}</h3>
-        <p>${libro.autor}</p>
-        <button onclick="verDetalles(${libro.id})">Ver Detalles</button>
-      `;
-      catalogoLibros.appendChild(libroElement);
-    });
-  } catch (error) {
-    alert("Error al cargar los libros 😢");
-    console.error(error);
-  }
-}
-
-// 6. Enviar formulario (crear o actualizar libro) POST o PUT
-formulario.addEventListener("submit", async (e) => {
-  e.preventDefault();
-
-  const datosLibro = {
-    nombre: nombre.value,
-    autor: autor.value,
-  };
-
-  try {
-    if (modoEdicion) {
-      // Llama a la API para actualizar un libro existente
-      await fetch(`${API_URL}/${idEditando}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datosLibro),
-      });
-
-      alert("Libro actualizado con éxito");
-
-    } else {
-      await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(datosLibro),
-      });
-      alert("Libro agregado con éxito");
-    }
-
+// ----- EVENT LISTENERS INICIALES -----
+btnAgregaLibro.onclick = () => {
+    crud.style.display = "block";
     resetearFormulario();
-    cargarLibros();
-  } catch (error) {
-    alert("❌ Error al guardar los datos");
-    console.error(error);
-  }
-});
+};
 
-/**
- * 7. Función que carga el libro en el formulario
- * para poder editarlo.
- * 
- * @param {string} id - Es el identificador del libro que
- * queremos editar.
- */
+btnCancelar.onclick = () => {
+    resetearFormulario();
+    crud.style.display = "none";
+};
+
+formulario.onsubmit = async (e) => {
+    e.preventDefault();
+
+    const datosLibro = {
+        nombre: nombreInput.value,
+        autor: autorInput.value,
+        // imagen: imagenInput ? imagenInput.value : undefined, // Si tienes input de imagen
+    };
+
+    try {
+        if (modoEdicion) {
+            console.log("DEBUG: Guardando edición para ID:", idEditando, "con datos:", datosLibro);
+            await fetch(`${API_URL}/${idEditando}`, {
+                method: "PUT",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datosLibro),
+            });
+            alert("Libro actualizado");
+        } else {
+            console.log("DEBUG: Añadiendo nuevo libro con datos:", datosLibro);
+            await fetch(API_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(datosLibro),
+            });
+            alert("Libro agregado");
+        }
+
+        resetearFormulario();
+        crud.style.display = "none"; // Ocultar el formulario después de guardar/actualizar
+        cargarLibros(); // Recarga la lista para mostrar el cambio
+    } catch (error) {
+        alert("Error al guardar");
+        console.error("DEBUG: Error al guardar libro:", error);
+    }
+};
+
+// ----- FUNCIONES PRINCIPALES -----
+
+async function cargarLibros() {
+    console.log("DEBUG: Iniciando cargarLibros()");
+    catalogoLibros.innerHTML = ""; // Limpiamos el contenedor para evitar duplicados.
+    console.log("DEBUG: Contenedor 'catalogoLibros' limpiado.");
+
+    try {
+        console.log("DEBUG: Haciendo fetch a:", API_URL);
+        const res = await fetch(API_URL);
+
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+
+        const libros = await res.json();
+        console.log("DEBUG: Libros obtenidos de la API:", libros);
+
+        if (libros.length === 0) {
+            console.log("DEBUG: No hay libros para mostrar.");
+            catalogoLibros.innerHTML = "<p>No hay libros disponibles en el catálogo.</p>";
+            return;
+        }
+
+        libros.forEach((libro) => {
+            console.log("DEBUG: Procesando libro:", libro.nombre, "ID:", libro.id);
+            const libroDiv = document.createElement("div");
+            libroDiv.classList.add("libro");
+
+            // Contenido HTML de la tarjeta (sin botones interactivos aquí)
+            libroDiv.innerHTML = `
+                <img src="./img/${libro.imagen ? libro.imagen : "default.png"}" alt="Portada de ${libro.nombre}">
+                <h3>${libro.nombre}</h3>
+                <p>${libro.autor}</p>
+            `;
+
+            // Contenedor para acciones (editar, borrar, detalles)
+            const accionesDiv = document.createElement("div");
+            accionesDiv.classList.add("acciones-libro");
+
+            // Botón "Ver Detalles"
+            const btnDetalles = document.createElement("button");
+            btnDetalles.classList.add("btn-detalles");
+            btnDetalles.textContent = "Ver Detalles";
+            btnDetalles.addEventListener("click", () => verDetalles(libro.id));
+            accionesDiv.appendChild(btnDetalles);
+
+            // Botón de Editar
+            const btnEditar = document.createElement("button");
+            btnEditar.classList.add("btn-editar");
+            btnEditar.textContent = "✏️";
+            // Usamos addEventListener, no onclick en el HTML. Pasamos el ID directamente.
+            btnEditar.addEventListener("click", () => cargarLibroEnFormulario(libro.id));
+            accionesDiv.appendChild(btnEditar);
+
+            // Botón de Borrar
+            const btnBorrar = document.createElement("button");
+            btnBorrar.classList.add("btn-borrar");
+            btnBorrar.textContent = "🗑️";
+            // Usamos addEventListener, no onclick en el HTML. Pasamos el ID directamente.
+            btnBorrar.addEventListener("click", () => borrarLibro(libro.id));
+            accionesDiv.appendChild(btnBorrar);
+            
+            // Añadir el div de acciones al div del libro
+            libroDiv.appendChild(accionesDiv);
+            
+            // Añadir el libro al catálogo
+            catalogoLibros.appendChild(libroDiv);
+            console.log("DEBUG: Libro", libro.id, "añadido al DOM.");
+        });
+        console.log("DEBUG: Finalizando cargarLibros() - Todos los libros procesados.");
+    } catch (error) {
+        console.error("DEBUG: Error en cargarLibros:", error);
+        alert("Error al cargar los libros: " + error.message);
+    }
+}
+
 async function cargarLibroEnFormulario(id) {
-  try {
-    const res = await fetch(`${API_URL}/${id}`);
-    const libro = await res.json();
+    console.log("DEBUG: Cargando libro en formulario con ID:", id);
+    try {
+        const res = await fetch(`${API_URL}/${id}`);
+        if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        const libro = await res.json();
 
-    nombre.value = libro.nombre;
-    autor.value = libro.autor;
+        nombreInput.value = libro.nombre;
+        autorInput.value = libro.autor;
+        // if (imagenInput) imagenInput.value = libro.imagen || ""; // Carga imagen si existe el input
 
-    modoEdicion = true;
-    idEditando = id;
-    tituloFormulario.textContent = "Editar libro";
-  } catch (error) {
-    alert("⚠️ Error al cargar el libro");
-    console.error(error);
-  }
+        modoEdicion = true;
+        idEditando = id;
+        tituloFormulario.textContent = "Editar libro";
+        crud.style.display = "block"; // Muestra el modal
+    } catch (error) {
+        alert("Error al cargar libro para edición");
+        console.error("DEBUG: Error en cargarLibroEnFormulario:", error);
+    }
 }
 
-/**
- * 8. Función asíncrona para borrar un libro (DELETE).
- * Es async porque va a usar await para comunicarse con el servidor.
- * Hace una petición HTTP DELETE al servidor para eliminar el libro con ese ID.
- * 
- * @param {string} id - Es el identificador del libro que
- * queremos borrar.
- */
 async function borrarLibro(id) {
-  const confirmacion = confirm("¿Estás segura de que quieres eliminar este libro?");
-  if (!confirmacion) return;
+    if (!confirm("¿Eliminar este libro?")) return;
 
-  try {
-    await fetch(`${API_URL}/${id}`, { method: "DELETE" });
-    alert("Libro eliminado");
-    cargarLibros();
-  } catch (error) {
-    alert("❌ No se pudo eliminar");
-    console.error(error);
-  }
+    try {
+        console.log("DEBUG: Intentando borrar libro con ID:", id);
+        const response = await fetch(`${API_URL}/${id}`, { method: "DELETE" });
+        if (!response.ok) {
+            throw new Error(`Error al eliminar en la API: ${response.status} ${response.statusText}`);
+        }
+        alert("Libro eliminado");
+        console.log("DEBUG: Libro eliminado en la API. Llamando a cargarLibros() para refrescar.");
+        cargarLibros(); // Recarga la lista después de eliminar
+    } catch (error) {
+        alert("Error al eliminar");
+        console.error("DEBUG: Error al eliminar libro:", error);
+    }
 }
 
-/**
- * 9. Función Resetear formulario.
- * Limpia todos los campos del formulario (nombre y autor) 
- * y lo deja en modo "agregar nuevo".
- */
 function resetearFormulario() {
-  formulario.reset();
-  crud.style.display = "none"; // Esconde el formulario
-  modoEdicion = false;
-  idEditando = null;  
+    formulario.reset();
+    modoEdicion = false;
+    idEditando = null;
+    tituloFormulario.textContent = "Agregar libros";
 }
 
-// 10. Botón cancelar
-btnCancelar.addEventListener("click", resetearFormulario);
-
-// 11. Función para mostrar detalles de un libro
 function verDetalles(id) {
-  // Aquí puedes implementar la lógica para mostrar los detalles del libro
-  console.log(`Mostrar detalles del libro con ID: ${id}`);
+    console.log("DEBUG: Ver detalles de libro con ID:", id);
+    alert(`Mostrar detalles del libro con ID ${id}`);
+    // Aquí puedes implementar una lógica más avanzada para mostrar los detalles en un modal o sección aparte.
 }
 
-// 12. Inicia la aplicación
-cargarLibros();
+// ----- INICIO DE LA APLICACIÓN -----
+crud.style.display = "none"; // Asegúrate de que el modal esté oculto al inicio
+cargarLibros(); // Carga los libros cuando la página se abre
