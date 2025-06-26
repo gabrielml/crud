@@ -96,7 +96,7 @@ async function cargarLibros() {
 
             // Contenido HTML de la tarjeta (sin botones interactivos aquí)
             libroDiv.innerHTML = `
-                <img src="./img/${libro.imagen ? libro.imagen : "default.png"}" alt="Portada de ${libro.nombre}">
+                <img src="${libro.portada ? libro.portada : "default.png"}" alt="Portada de ${libro.nombre}">
                 <h3>${libro.nombre}</h3>
                 <p>${libro.autor}</p>
             `;
