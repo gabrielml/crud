@@ -20,12 +20,12 @@ let idEditando = null;
 // ----- EVENT LISTENERS INICIALES -----
 btnAgregaLibro.onclick = () => {
     crud.style.display = "block";
-    resetearFormulario();
+    // resetearFormulario();
 };
 
 btnCancelar.onclick = () => {
-    resetearFormulario();
     crud.style.display = "none";
+    // resetearFormulario();
 };
 
 formulario.onsubmit = async (e) => {
