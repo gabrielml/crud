@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="UTF-8" />
   <title>Biblioteca Digital</title>
   <link rel="stylesheet" href="./css/styles.css" />
+  <link rel="apple-touch-icon" sizes="180x180" href="./img/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="./img/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="./img/favicon-16x16.png">
+  <link rel="manifest" href="./img/site.webmanifest">
 </head>
+
 <body>
   <header class="header">
     <div class="logo">
@@ -32,7 +38,7 @@
 
     <section id="crud" class="crud">
       <h2 id="tituloFormulario">Agregar libros</h2>
-      
+
       <form id="formulario">
         <input type="text" id="nombre" placeholder="Nombre del libro" required />
         <input type="text" id="autor" placeholder="Autor" />
@@ -40,7 +46,7 @@
         <button type="button" id="btnCancelar">Cancelar</button>
       </form>
 
-   <!--TODO: Solucionar renderizado de libros, delete la ul-->
+      <!--TODO: Solucionar renderizado de libros, delete la ul-->
     </section>
 
     <section id="catalogos" class="catalogo">
@@ -70,7 +76,7 @@
     </section>
   </main>
 
-    <!-- Modal btn Detalles -->
+  <!-- Modal btn Detalles -->
   <div id="modalDetalles" class="modal">
     <div class="modal-content">
       <img id="modalImgAutor" src="" alt="Imagen del autor/a" width="200" />
@@ -93,4 +99,5 @@
 
 
 </body>
+
 </html>
