@@ -2,59 +2,58 @@
   "libros": [
     {
       "id": "1",
-      "título": "Cien años de soledad",
+      "titulo": "Cien años de soledad",
       "autor": "Gabriel García Márquez",
       "categoría": "Ficción",
-      "img-portada": "img/ejemplo-img-portada.webp",
-      "img-autor": "img/ejemplo-img-autor.webp",
+      "portada": "./img/cien-anios-soledad.webp",
+      "img-autor": "./img/gabrielgarcíamarquez.webp",
       "sinopsis": "Narra la historia de la familia Buendía a lo largo de siete generaciones en el pueblo ficticio de Macondo, desde su fundación hasta su desaparición, explorando temas como el amor, la soledad, la guerra, el incesto, y el paso del tiempo",
       "primera-edición": "05/1967",
       "ISBN": "843760494X"
     },
     {
       "id": "2",
-      "título": "El gran Gatsby",
+      "titulo": "El gran Gatsby",
       "autor": "F. Scott Fitzgerald",
       "categoría": "Ficción",
-      "img-portada": "img/ejemplo-img-portada.webp",
-      "img-autor": "img/ejemplo-img-autor.webp",
+      "portada": "./img/gatsby.webp",
+      "img-autor": "./img/scottfitzgerald.webp",
       "sinopsis": "La historia, ambientada en la década de 1920 en Nueva York y Long Island, narra la vida de Jay Gatsby, un millonario misterioso que organiza fiestas extravagantes con la esperanza de reconquistar a su antiguo amor",
       "primera-edición": "04/1925",
       "ISBN": "978-84-9062-864-5"
     },
     {
       "id": "3",
-      "título": "Don Quijote de la Mancha",
+      "titulo": "Don Quijote de la Mancha",
       "autor": "Miguel de Cervantes Saavedra",
       "categoría": "Novela de caballerías / Sátira",
-      "img-portada": "http://googleusercontent.com/image_collection/image_retrieval/4054438012263048475",
-      "img-autor": "img/miguel-de-cervantes-saavedra-autor.webp",
+      "portada": "./img/domquixote.webp",
+      "img-autor": "./img/cervantes.webp",
       "sinopsis": "Alonso Quijano, un hidalgo cincuentón, enloquece leyendo libros de caballerías y decide convertirse en el caballero अंधांत Don Quijote de la Mancha. Acompañado de su fiel escudero Sancho Panza, se embarca en un sinfín de aventuras, interpretando la realidad a través de su delirio caballeresco y enfrentándose a molinos que cree gigantes, rebaños que confunde con ejércitos y posadas que ve como castillos.",
       "primera-edición": "01/1605 (Primera parte)",
       "ISBN": "978-84-204-6330-9"
     },
     {
       "id": "4",
-      "título": "Orgullo y Prejuicio",
+      "titulo": "Orgullo y Prejuicio",
       "autor": "Jane Austen",
       "categoría": "Romance",
-      "img-portada": "img/orgullo-y-prejuicio-portada.webp",
-      "img-autor": "img/jane-austen-autor.webp",
+      "portada": "./img/orgullo.webp",
+      "img-autor": "./img/janeausten.webp",
       "sinopsis": "La novela narra la historia de Elizabeth Bennet, una joven de la campiña inglesa, y su relación con el aristocrático Fitzwilliam Darcy. La trama explora temas como el amor, la clase social, el orgullo y los prejuicios de la sociedad de la época.",
       "primera-edición": "28/01/1813",
       "ISBN": "978-84-9105-257-8"
-
     },
-     {
+    {
       "id": "5",
-      "título": "El Señor de los anillos",
+      "titulo": "El Señor de los anillos",
       "autor": "J.R.R.Tolkien",
       "categoría": "Fantasía",
-      "img-portada": "img/ejemplo-img-portada.webp",
-      "img-autor": "img/ejemplo-img-autor.webp",
+      "portada": "./img/senior-anillos.webp",
+      "img-autor": "./img/rrtolkien.webp",
       "sinopsis": "Su historia se desarrolla en la Tercera Edad del Sol de la Tierra Media, un lugar ficticio poblado por hombres y otras razas antropomorfas, como los hobbits, los elfos o los enanos, así como por muchas otras criaturas reales y fantásticas. La novela narra el viaje del protagonista principal, Frodo Bolsón, hobbit de la Comarca, para destruir el Anillo Único y la consiguiente guerra que provocará el enemigo para recuperarlo, ya que es la principal fuente de poder de su creador, el señor oscuro Sauron.",
       "primera-edición": "1954/1955",
       "ISBN": "978-88-4529-261-3"
-     }
+    }
   ]
 }
