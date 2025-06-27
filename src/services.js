@@ -57,7 +57,7 @@ formulario.onsubmit = async (e) => {
 
         resetearFormulario();
         crud.style.display = "none"; // Ocultar el formulario después de guardar/actualizar
-        cargarLibros(); // Recarga la lista para mostrar el cambio
+       // cargarLibros(); // Recarga la lista para mostrar el cambio
     } catch (error) {
         alert("Error al guardar");
         console.error("DEBUG: Error al guardar libro:", error);
@@ -168,7 +168,7 @@ async function borrarLibro(id) {
             throw new Error(`Error al eliminar en la API: ${response.status} ${response.statusText}`);
         }
         alert("Libro eliminado");
-        cargarLibros(); // Recarga la lista después de eliminar
+       // cargarLibros(); // Recarga la lista después de eliminar
     } catch (error) {
         alert("Error al eliminar");
         console.error("DEBUG: Error al eliminar libro:", error);
